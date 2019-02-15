@@ -1,0 +1,63 @@
+class Node(object):
+    def __init__(self,data):
+        self.data = data
+        self.next = None
+        self.prev = None
+class LinkedList(object):
+    def __init__(self):
+        self.head = None
+        self.counter = 0
+    def insertathead(self,data):
+        if self.head is None:
+            a = Node(data)
+            self.head = a
+        else:
+            a = Node(data)
+            b = self.head
+            a.next = b
+            b.prev = a
+            self.head = a
+        self.counter+=1
+    def insertatend(self,data):
+        if self.head is None:
+            a = Node(data)
+            self.head = a
+        else:
+            b = Node(data)
+            a = self.head
+            while a.next is not None:
+                a = a.next
+            a.next = b
+            b.prev = a
+        self.counter+=1
+    def printlist(self):
+        a = self.head
+        if self.head is None:
+            print("Empty List!")
+        else:
+            while a is not None:
+                print(a.data)
+                a = a.next
+        return
+    def deleteathead(self):
+        if self.head is None:
+            print("Empty Linked List!")
+        else:
+            self.head = self.head.next
+            self.head.prev = None
+        self.counter-=1
+    def deleteatend(self):
+        if self.head is None:
+            print("Empty Linked List!")
+        if self.counter==1:
+            self.head = None
+        else:
+            b = self.head
+            b = b.next
+            a = self.head
+            while b.next is not None:
+                a = a.next
+                b = b.next
+            a.next = None
+            del(b)
+        self.counter-=1
